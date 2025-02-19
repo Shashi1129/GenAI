@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Eclipse Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        #fact {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        @media (max-width: 600px) {
+            #fact {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Fun Eclipse Facts</h1>
+    <div id="fact">Click the button to see a fun fact!</div>
+    <button id="showFactButton">Show Random Fact</button>
+    <button id="shareButton">Share on Twitter</button>
+
+    <script>
+        const eclipseFacts = [
+            "There are three main types of eclipses: solar eclipses, lunar eclipses, and hybrid eclipses.",
+            "A total solar eclipse occurs when the Moon completely covers the Sun, as viewed from Earth.",
+            "In a partial solar eclipse, only part of the Sun is obscured by the Moon.",
+            "Lunar eclipses can be seen from anywhere on the night side of the Earth.",
+            "Eclipses occur in cycles, with the Saros cycle being approximately 18 years, 11 days, and 8 hours.",
+            "The longest total solar eclipse can last up to 7 minutes and 32 seconds.",
+            "Eclipses have been recorded throughout history and often interpreted as omens.",
+            "Eclipses provide scientists with opportunities to study the Sun's corona and other phenomena.",
+            "Special glasses or solar viewers are necessary to safely observe solar eclipses.",
+            "Total solar eclipses are rare for any given location, with the next one in the contiguous U.S. on April 8, 2024."
+        ];
+
+        document.getElementById('showFactButton').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * eclipseFacts.length);
+            const factElement = document.getElementById('fact');
+            factElement.textContent = eclipseFacts[randomIndex];
+            factElement.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                factElement.style.transform = 'scale(1)';
+            }, 300);
+        });
+
+        document.getElementById('shareButton').addEventListener('click', () => {
+            const fact = document.getElementById('fact').textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
